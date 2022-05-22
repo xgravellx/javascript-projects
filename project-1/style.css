@@ -1,0 +1,106 @@
+:root {
+    --main-color: rgba(41, 128, 185,1.0);
+    --main-color-light: rgba(41, 128, 185, 0.3);
+    --accent-color: rgba(243, 156, 18,1.0);
+    --accent-color-light: rgba(243, 156, 18,0.3);
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-image: linear-gradient(to bottom right, var(--main-color), var(--main-color-light));
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.main-title {
+    font-size: 2rem;
+    color: white;
+}
+
+header, .task-form {
+    min-height: 20vh;
+    margin: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-item {
+    padding: .5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-color: white;
+    outline: none;
+}
+
+.btn-add-task {
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.btn-add-task:hover {
+    color: white;
+
+}
+
+.task-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-list {
+    list-style: none;
+    min-width: 40%;
+
+}
+
+.task-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .5rem;
+    font-size: 1.2rem;
+    background-color: white;
+    transition: .5s ease-in-out;
+}
+
+.task-description {
+    flex: 1;
+    padding: 1rem;
+}
+
+.task-btn {
+    background-color: var(--accent-color);
+    outline: none;
+    font-size: 1.2rem;
+    padding: .5rem;
+    box-sizing: border-box;
+    padding: 1.1rem;
+    border: none;
+}
+
+.btn-task-delete {
+    background-color: rgb(221, 48, 48);
+
+}
+
+.mission-completed {
+    text-decoration: line-through;
+    opacity: .6;
+}
+
+.far {
+    pointer-events: none;
+}
+
+.get-lost {
+    transform: scale(0);
+}
