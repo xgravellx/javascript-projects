@@ -27,3 +27,7 @@
 .info-error {
     border: 1px solid red;
 }
+
+table {
+    width: 100%;
+}
