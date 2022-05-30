@@ -31,3 +31,7 @@
 table {
     width: 100%;
 }
+
+.far {
+    pointer-events: none;
+}

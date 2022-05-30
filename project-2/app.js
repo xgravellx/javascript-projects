@@ -8,28 +8,89 @@ const kisiListesi = document.querySelector('.kisi-listesi');
 
 // Event Listenerların tanımlanması
 form.addEventListener('submit', save);
+kisiListesi.addEventListener('click', kisiIslemleriniYap);
 
 // tüm kişiler için dizi 
 const tumKisilerDizisi = [];
+let secilenSatir = undefined;
+
+function kisiIslemleriniYap(event) {
+
+    if (event.target.classList.contains('btn-trash')) {
+        const silinecekTr = event.target.parentElement.parentElement;
+        const silinecekMail = event.target.parentElement.previousElementSibling.textContent;
+        rehberdenSil(silinecekTr, silinecekMail);
+    }
+    else if (event.target.classList.contains('btn-edit')) {
+        document.querySelector(".kaydetGuncelle").value = "Güncelle";
+        const secilenTR = event.target.parentElement.parentElement;
+        const guncellenecekMail = secilenTR.cells[2].textContent;
+
+        ad.value = secilenTR.cells[0].textContent;
+        soyad.value = secilenTR.cells[1].textContent;
+        mail.value = secilenTR.cells[2].textContent;
+
+        secilenSatir = secilenTR;
+    }
+}
+
+function rehberdenSil(silinecekTrElement, silinecekMail) {
+    silinecekTrElement.remove();
+
+    console.log(silinecekTrElement, silinecekMail);
+    
+    /*maile göre silme işlemi
+    tumKisilerDizisi.forEach((person, index) => {
+        if (person.mail === silinecekMail) {
+            tumKisilerDizisi.splice(index, 1);
+        }
+    }); */
+
+    const silinmeyecekKisiler = tumKisilerDizisi.filter(function (person, index) {
+        return person.mail !== silinecekMail;
+    });
+
+    tumKisilerDizisi.length = 0; 
+    tumKisilerDizisi.push(...silinmeyecekKisiler);
+
+    console.log("silme yapıldı");
+    console.log(tumKisilerDizisi);
+}
+
 
 function save(e) {
     e.preventDefault();
 
-    const eklenecekKisi = {
+    const eklenecekOrGuncellenecekKisi = {
         ad:ad.value,
         soyad: soyad.value,
         mail:mail.value,
     }
 
-    const sonuc = verileriKontrolEt(eklenecekKisi);
+    const sonuc = verileriKontrolEt(eklenecekOrGuncellenecekKisi);
     if(sonuc.durum) {
-        kisiyiEkle(eklenecekKisi);
+        if (secilenSatir) {
+            kisiyiGuncelle(eklenecekOrGuncellenecekKisi);
+        }
+        else {
+            kisiyiEkle(eklenecekOrGuncellenecekKisi);
+        }
     }
     else {
         bilgiOlustur(sonuc.mesaj, sonuc.durum);
     }
 
     //console.log(eklenecekKisi);
+}
+
+function kisiyiGuncelle(person) {
+    //kişi parametresinde seçilen kişinin yeni değerleri vardır
+    secilenSatir.cells[0].textContent = person.ad;
+    secilenSatir.cells[1].textContent = person.soyad;
+    secilenSatir.cells[2].textContent = person.mail;
+
+    document.querySelector('.kaydetGuncelle').value = 'Kaydet';
+    secilenSatir = undefined;
 }
 
 function kisiyiEkle(eklenecekKisi) {
