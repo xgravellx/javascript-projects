@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project 2</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="/project-2/style.css">
+
 
 </head>
 <body>
     <div class="container">
         <h1>Guide App</h1>
 
-        <div class="info info-success">Successful</div>
-        <div class="info info-error">Incorrect</div>
+        <!-- <div class="info info-success">Successful</div>
+        <div class="info info-error">Incorrect</div> -->
         
         <form id="form-guide">
             <div>
@@ -33,10 +36,31 @@
                 <input type="email" id="mail" class="u-full-width">
             </div>
             <div>
-                <input class="button-primary u-full-width" type="submit" value="Save">
+                <input class="button-primary u-full-width kaydetGuncelle" type="submit" value="Save">
             </div>
         </form>
+
         <hr>
+
+        <table class="u-full-wdith">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="kisi-listesi">
+                <!-- <td>Hazal</td>
+                <td>Yilmaz</td>
+                <td>hazal.yilmazx@hotmail.com</td>
+                <td>
+                    <button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button> 
+                    <button class="btn btn-trash"><i class="fa-solid fa-trash"></i></button> 
+                </td> -->
+            </tbody>
+        </table>
     </div>
 
 
