@@ -31,6 +31,8 @@ function kisiIslemleriniYap(event) {
         mail.value = secilenTR.cells[2].textContent;
 
         secilenSatir = secilenTR;
+        console.log(tumKisilerDizisi);
+
     }
 }
 
@@ -53,8 +55,8 @@ function rehberdenSil(silinecekTrElement, silinecekMail) {
     tumKisilerDizisi.length = 0; 
     tumKisilerDizisi.push(...silinmeyecekKisiler);
 
-    console.log("silme yapıldı");
-    console.log(tumKisilerDizisi);
+    alanlariTemizle();
+    document.querySelector('.kaydetGuncelle').value = 'Kaydet';
 }
 
 
@@ -85,12 +87,24 @@ function save(e) {
 
 function kisiyiGuncelle(person) {
     //kişi parametresinde seçilen kişinin yeni değerleri vardır
+
+    // seçilen satırda güncellenmiş değerler var.
+    for (let i = 0; i < tumKisilerDizisi.length; i++) {
+        if (tumKisilerDizisi[i]. mail === secilenSatir.cells[2].textContent) {
+            tumKisilerDizisi[i] = person;
+            break;
+        }
+    }
+
     secilenSatir.cells[0].textContent = person.ad;
     secilenSatir.cells[1].textContent = person.soyad;
     secilenSatir.cells[2].textContent = person.mail;
 
     document.querySelector('.kaydetGuncelle').value = 'Kaydet';
     secilenSatir = undefined;
+
+    console.log(tumKisilerDizisi);
+
 }
 
 function kisiyiEkle(eklenecekKisi) {
