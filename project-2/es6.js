@@ -26,8 +26,23 @@ class Ui {
         this.soyad = document.getElementById('surname');
         this.mail = document.getElementById('mail');
         this.ekleGuncelleButton = document.querySelector('.kaydetGuncelle');
-        this.form = document.getElementById('form-guide').addEventListener('submit', this.kaydetGuncelle);
+        this.form = document.getElementById('form-guide').addEventListener('submit', this.kaydetGuncelle.bind(this));
+        this.kisiListesi = document.querySelector(".kisi-listesi");
         this.veritabani = new Veritabani();
+    }
+
+    kisiyiEkranaEkle(kisi) {
+        const olusturulanTR = document.createElement('tr');
+        olusturulanTR.innerHTML = `  
+        <td>${kisi.ad}</td>
+        <td>${kisi.soyad}</td>
+        <td>${kisi.mail}</td>
+        <td>
+            <button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button> 
+            <button class="btn btn-trash"><i class="fa-solid fa-trash"></i></button> 
+        </td>
+        `;
+        this.kisiListesi.appendChild(olusturulanTR);
     }
 
     kaydetGuncelle(e) {
@@ -37,10 +52,14 @@ class Ui {
 
         // tüm alanlar doldurulmuş
         if (sonuc) {
-            
+            // yeni kisiyi ekrana ekler
+            this.kisiyiEkranaEkle(kisi);
+
+            // localStorage ekler
+            this.veritabani.kisiEkle(kisi);
         }
         else {
-            
+            console.log("boş alan var");
         }
     }
 }
