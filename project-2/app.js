@@ -1,6 +1,6 @@
 // arayüz elementleri seçmek
-const ad = document.getElementById('name');
-const soyad = document.getElementById('surname');
+const ad = document.getElementById('ad');
+const soyad = document.getElementById('soyad');
 const mail = document.getElementById('mail');
 
 const form = document.getElementById('form-guide');

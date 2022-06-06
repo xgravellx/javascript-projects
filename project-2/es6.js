@@ -10,25 +10,62 @@ class Util {
     static bosAlanKontrolEt(...alanlar) {
         let sonuc = true;
         alanlar.forEach(alan => {
-            if (alan.length !== 0) {
+            if (alan.length === 0) {
                 sonuc = false;
                 return false;
             }
         });
-
         return sonuc;
     }
 }
 
 class Ui {
     constructor() {
-        this.ad = document.getElementById('name');
-        this.soyad = document.getElementById('surname');
+        this.ad = document.getElementById('ad');
+        this.soyad = document.getElementById('soyad');
         this.mail = document.getElementById('mail');
         this.ekleGuncelleButton = document.querySelector('.kaydetGuncelle');
-        this.form = document.getElementById('form-guide').addEventListener('submit', this.kaydetGuncelle.bind(this));
+        this.form = document.getElementById('form-guide').addEventListener('submit', this.kaydeGuncelle.bind(this));
         this.kisiListesi = document.querySelector(".kisi-listesi");
+        this.kisiListesi.addEventListener('click', this.guncelleOrSil.bind(this));
         this.veritabani = new Veritabani();
+
+        // update ve delete butonlarına basıldığında ilgili tr elemeni burda tutulur.
+        this.secilenSatir = undefined;
+        this.kisileriEkranaYazdır();
+    }
+
+    alanlariTemizle() {
+        this.ad.value = '';
+        this.soyad.value = '';
+        this.mail.value = '';
+
+    }
+
+    guncelleOrSil(e) {
+        const tiklanmaYeri = e.target;
+    
+        if (tiklanmaYeri.classList.contains('btn-trash')) {
+            this.secilenSatir = tiklanmaYeri.parentElement;
+            this.kisiyiEkrandanSil();
+        }
+        else if (tiklanmaYeri.classList.contains('btn-edit')) {
+            this.secilenSatir = tiklanmaYeri.parentElement;
+
+        }
+    }
+
+    kisiyiEkrandanSil() {
+        this.secilenSatir.remove();
+        const silinecekMail = this.secilenSatir.cells[2].textContent;
+        this.veritabani.kisiSil(silinecekMail);
+        this.alanlariTemizle();
+    }
+
+    kisileriEkranaYazdır() {
+        this.veritabani.tumKisiler.forEach(kisi => {
+            this.kisiyiEkranaEkle(kisi);
+        })
     }
 
     kisiyiEkranaEkle(kisi) {
@@ -57,6 +94,7 @@ class Ui {
 
             // localStorage ekler
             this.veritabani.kisiEkle(kisi);
+            this.alanlariTemizle();
         }
         else {
             console.log("boş alan var");
@@ -67,7 +105,7 @@ class Ui {
 class Veritabani{
     // uygulama ilk açıldığında veriler getirilir.
     constructor() {
-        this.tumKisiler = [];
+        this.tumKisiler = this.kisileriGetir();
     }
     kisileriGetir() {
         let tumKisilerLocal;
@@ -77,14 +115,30 @@ class Veritabani{
         else {
             tumKisilerLocal = JSON.parse(localStorage.getItem('tumKisiler'));
         }
-        this.tumKisiler = tumKisilerLocal;
         return tumKisilerLocal;
     }
 
     kisiEkle(kisi) {
-        const tumKisilerLocal = this.kisileriGetir();
-        tumKisilerLocal.push(kisi);
-        localStorage.setItem('tumKisiler', JSON.stringify(tumKisilerLocal));
+        this.tumKisiler.push(kisi);
+        localStorage.setItem('tumKisiler', JSON.stringify(this.tumKisiler));
+    }
+
+    kisiSil(mail) {
+        this.tumKisiler.forEach((kisi, index) => {
+            if (kisi.mail === mail) {
+                this.tumKisiler.splice(index, 1);
+            }
+        });
+        localStorage.setItem('tumKisiler', JSON.stringify(this.tumKisiler));
+    }
+
+    kisiGuncelle(guncellenmisKisi, mail) {
+        this.tumKisiler.forEach((kisi, index) => {
+            if (kisi.mail === mail) {
+                this.tumKisiler[index] = guncellenmisKisi;
+            }
+        });
+        localStorage.setItem('tumKisiler', JSON.stringify(this.tumKisiler));
     }
 }
 
