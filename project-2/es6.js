@@ -25,7 +25,7 @@ class Ui {
         this.soyad = document.getElementById('soyad');
         this.mail = document.getElementById('mail');
         this.ekleGuncelleButton = document.querySelector('.kaydetGuncelle');
-        this.form = document.getElementById('form-guide').addEventListener('submit', this.kaydeGuncelle.bind(this));
+        this.form = document.getElementById('form-guide').addEventListener('submit', this.kaydetGuncelle.bind(this));
         this.kisiListesi = document.querySelector(".kisi-listesi");
         this.kisiListesi.addEventListener('click', this.guncelleOrSil.bind(this));
         this.veritabani = new Veritabani();
@@ -50,7 +50,6 @@ class Ui {
             this.kisiyiEkrandanSil();
         }
         else if (tiklanmaYeri.classList.contains('btn-edit')) {
-            this.secilenSatir = tiklanmaYeri.parentElement;
 
         }
     }
@@ -65,7 +64,7 @@ class Ui {
     kisileriEkranaYazdır() {
         this.veritabani.tumKisiler.forEach(kisi => {
             this.kisiyiEkranaEkle(kisi);
-        })
+        });
     }
 
     kisiyiEkranaEkle(kisi) {
@@ -84,14 +83,14 @@ class Ui {
 
     kaydetGuncelle(e) {
         e.preventDefault();
-        const kisi = new Kisi(this.ad, this.soyad.value, this.mail.value);
+        const kisi = new Kisi(this.ad, this.soyad, this.mail);
         const sonuc = Util.bosAlanKontrolEt(kisi.ad, kisi.soyad, kisi.mail);
 
         // tüm alanlar doldurulmuş
         if (sonuc) {
             // yeni kisiyi ekrana ekler
             this.kisiyiEkranaEkle(kisi);
-
+ 
             // localStorage ekler
             this.veritabani.kisiEkle(kisi);
             this.alanlariTemizle();
