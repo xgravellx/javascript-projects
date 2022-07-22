@@ -15,5 +15,6 @@ It is an application to add contacts to contacts. This application is built with
 
 ## 3. Project-3
 With this app you can create random jokes. APIs used when creating applications; Chuck Norris (https://api.chucknorris.io/) and Unsplash API (https://unsplash.com/).
-![Screenshot_1](https://user-images.githubusercontent.com/88984994/180465568-012f151e-20c9-4c74-800c-dcb1a2f0c999.png)
+
+![image](https://user-images.githubusercontent.com/88984994/180467189-6edf7167-c787-4109-9d70-b04228c6fecd.png)
 
