@@ -18,3 +18,8 @@ With this app you can create random jokes. APIs used when creating applications;
 
 ![image](https://user-images.githubusercontent.com/88984994/180467189-6edf7167-c787-4109-9d70-b04228c6fecd.png)
 
+
+## 4. Project-4
+It is a project to create a digital clock with Javascript.
+
+![image](https://user-images.githubusercontent.com/88984994/183252124-753714b5-3baa-4fae-80dd-3bda50913054.png)
