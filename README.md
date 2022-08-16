@@ -28,3 +28,4 @@ It is a project to create a digital clock with Javascript.
 ## 5. Project-5
 This project contains the contents of a blog page. The following technologies were used; javascript, nodejs, ejs, axios, express, path and express ejs layouts.
 
+![image](https://user-images.githubusercontent.com/88984994/184907759-bec18045-21d9-45e2-a3e1-a2cd90cd572a.png)
