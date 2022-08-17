@@ -1,0 +1,26 @@
+<%- include('../partials/_header') %> <!-- _header.ejs dosyasını import ettik -->
+
+<div class="columns is-multiline">
+    <% makaleler.forEach((makale, index) => { %>
+        
+        <div class="column is-4 ">
+            <%- include('../partials/_makale_card', {makale, index}) %> <!-- _makale_card.ejs dosyasını import ettik -->
+
+        </div>
+    
+    <% }) %>
+</div>
+
+<!-- Sayfalama Mantığı -->
+<% 
+const sayfaSayisi = sayfalama.connection['x-wp-totalpage'];
+const toplamVeriSayisi = sayfalama.connection['x-wp-total'];
+console.log(sayfaSayisi, toplamVeriSayisi);
+%> 
+
+
+<div class="block"></div>
+<div class="column is-6 is-offset-4">
+    <%- include('../partials/_pagination', {sayfaSayisi, toplamVeriSayisi}) %>
+</div>
+<div class="block"></div>

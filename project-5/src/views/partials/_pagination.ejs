@@ -1,0 +1,13 @@
+<nav class="pagination" role="navigation" aria-label="pagination">
+    <a class="pagination-previous is-disabled" title="This is the first page">Önceki</a>
+    <a class="pagination-next">Sonraki</a>
+    <ul class="pagination-list">
+
+        <% for( let index = 1; index <= sayfaSayisi; index++ ) { %>
+            <li>
+                <a href="blog?page=<%=index %> " class="pagination-link" aria-label="Goto page 2"><%- index %></a>
+            </li>
+        <% } %>
+
+    </ul>
+  </nav>
